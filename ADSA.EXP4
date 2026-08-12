@@ -1,0 +1,47 @@
+Experiment 4: Search Key in a BST
+
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+
+
+def insert(root, key):
+    if root is None:
+        return Node(key)
+
+    if key < root.key:
+        root.left = insert(root.left, key)
+    else:
+        root.right = insert(root.right, key)
+
+    return root
+
+
+def search(node, key):
+    if node is None:
+        return False
+
+    if node.key == key:
+        return True
+
+    if key < node.key:
+        return search(node.left, key)
+    else:
+        return search(node.right, key)
+
+root = None
+
+values = [50, 30, 70, 20, 40, 60, 80]
+
+for value in values:
+    root = insert(root, value)
+
+key = int(input("Enter key to search: "))
+
+if search(root, key):
+    print("Key found")
+else:
+    print("Key not found")
